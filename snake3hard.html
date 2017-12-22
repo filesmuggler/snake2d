@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <title>
+            SNAKE
+        </title>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        @font-face { font-family: Delicious; src: url('Famirids.ttf'); } 
+        html{
+            font-family: Delicious;
+            margin: 0;
+            padding: 0;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+            background-color: black;
+        }
+        body{
+            align-content: center;
+            align-items: center;
+            align-self: center;
+        }
+        canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        #game-header{
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size: 40px;
+            color: white;
+
+        }
+        #game-menu{
+            color: #0CCAE8;
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .button {
+            background-color: black;
+            border: solid;
+            border-color: #0CE88B;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            font-family: Delicious;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .score {
+            background-color: black;
+            border: solid;
+            border-color: #0CE88B;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            font-size: 20px;
+            font-family: Delicious;
+            margin: 4px 2px;
+        }
+        #game-area{
+            background-color: black;
+            padding: 1%;
+        }
+        #game-canvas{
+            border-style: solid;
+            border-color: coral;
+            background-color: beige;
+        }
+        #game-instruction{
+            background-color: black;
+            color: #0D9FFF;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-decoration: none;
+        }
+
+    </style>
+    <body>
+        <header id="game-header">Snake 2d</header>
+        <div id="game-menu">
+            <form>
+                <input class="button" type="button" value="<<Back" onclick="window.location.href='snake3index.html'" />
+            </form> 
+            <form>
+                <input class="button" type="button" value="New Game" onclick="window.location.href='snake3hard.html'" />
+            </form> 
+            <div class="score">
+                Score:&nbsp; 
+                <div id="game-score"></div>
+            </div>
+        </div>
+        <div id="game-area">
+            <canvas id="game-canvas" width="400" height="400"></canvas>
+            <script>
+                //loading script after page loads
+                window.onload=function(){
+                    //getting canvas
+                    canv = document.getElementById("game-canvas");
+                    //setting context
+                    ctx = canv.getContext("2d");
+                    //listener to the keyboard event
+                    document.addEventListener("keydown",keyPush); 
+                    //calling function over and over
+                    setInterval(game,1000/15); 
+                }
+
+                 //some global variables
+                 x_velocity = 0; //x velocity of snake head
+                 y_velocity = 0; //y velocity of snake head
+                 px = 10; //x position of snake head
+                 py = 10; //y position of snake head
+                 gs = 20; //smaller kwadraty (the smaller squares the higher resolution)
+                 tc = 20; //fill in caly canvas
+                 ball_x = 15; //x position of ball 
+                 ball_y = 15; //y position of ball
+                 trail = []; //array of snake
+                 tail = 5; //snake basic tail length
+                 result = 0; //result of the game
+                 ball_color = "red"; //basic color of ball
+
+
+                //main game function called about 60 times a second
+                function game(){
+
+                    //adding velocity
+                    px = px + x_velocity;
+                    py = py + y_velocity;
+
+                    //handling the wrapping
+                    if(px < 0){
+                    px = tc-1;
+                    }
+                    if(px > tc-1){
+                    px = 0;
+                    }
+                    if(py < 0){
+                    py = tc-1;
+                    }
+                    if(py > tc-1){
+                    py = 0;
+                    }
+
+                    //drawing the game area
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(0, 0, canv.width, canv.height);
+
+                    //drawing the snake
+                    ctx.fillStyle = "lime";
+                    for(var i = 0;i < trail.length; i++) {
+                    ctx.fillRect(trail[i].x*gs, trail[i].y*gs, gs-2, gs-2);
+                        if(trail[i].x == px && trail[i].y == py){
+                            tail = 5;
+                            result = 0;
+                            document.getElementById("game-score").innerHTML = result;
+                        }
+                    }
+                    //pushing snake parts to the snake array
+                    trail.push({x:px, y:py});
+                    while(trail.length > tail){
+                        trail.shift();
+                    }
+
+                    //detecting collecting a ball
+                    if(ball_x == px && ball_y == py){
+                        tail++;
+                        result++;
+                        document.getElementById("game-score").innerHTML = result;  
+                   
+                        //generating new ball coordinates
+                        ball_x = Math.floor(Math.random()*tc);
+                        ball_y = Math.floor(Math.random()*tc);
+        
+                        //generating new ball color
+                        ball_color = getRandomColor();
+                    }
+
+                    //drawing ball
+                    ctx.fillStyle = ball_color;
+                    ctx.fillRect(ball_x*gs, ball_y*gs, gs-2, gs-2);
+                }
+
+                //handling keyboard events
+                function keyPush(evt){
+                    switch(evt.keyCode){
+                    case 37:
+                        x_velocity = -1;
+                        y_velocity = 0;
+                        break;
+                    case 38:
+                        x_velocity = 0;
+                        y_velocity = -1;
+                        break;
+                    case 39:
+                        x_velocity = 1;
+                        y_velocity = 0;
+                        break;
+                    case 40:
+                        x_velocity = 0;
+                        y_velocity = 1;
+                        break;
+                    }
+                }
+                //function for generating random hex colors
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+    </script>
+        </div>
+        <a href="instruction.html" id="game-instruction">
+            instruction
+        </a>
+    </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Snake Game</title>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        @font-face { font-family: Delicious; src: url('Famirids.ttf'); } 
+        html{
+            font-family: Delicious;
+            margin: 0;
+            padding: 0;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+            background-color: black;
+        }
+        body{
+            align-content: center;
+            align-items: center;
+            align-self: center;
+        }
+        canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        #game-header{
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            font-size: 50px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #game-menu{
+            color: #0CCAE8;
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .button {
+            background-color: black;
+            border: solid;
+            border-color: #0CE88B;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: Delicious;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #game-rules{
+            background-color: black;
+            color: white;
+            display: block;
+            justify-content:center;
+            align-items:center;
+            text-decoration: none;
+            padding: 35px;
+            margin: 0% 20%;
+        }
+        #hl{
+            display: flex;
+            font-size: 35px;
+            text-align: center;
+            justify-content:center;
+            align-items:center;
+            padding: 5px;
+        }
+        #p{
+            font-size: 19px;
+            text-align: center;
+            justify-content:center;
+            align-items:center;
+        }
+        #hp{
+            color: aquamarine;
+            font-size: 22px;
+            text-align: center;
+            justify-content:center;
+            align-items:center;
+        }
+        #email{
+            color: rgb(255, 127, 249);
+            font-size: 19px;
+        }
+    </style>
+    <body>
+        <!-- Header -->
+        <div id="game-header">
+            SNAKE 2D
+        </div>
+        <!-- Menu section -->
+        <div id="game-menu">
+            <!-- Back button -->
+            <form>
+                <input class="button" type="button" value="<<Back" onclick="window.location.href='snake3index.html'" />
+            </form> 
+        </div>
+        <!-- Rules section -->
+        <div id="game-rules">
+            <div id="hl">
+                Instruction<br>
+            </div>
+            <div id="p">
+                <div id="hp">Movement</div><br>
+                Use arrow keys to move the snake around the map.
+            </div>
+            <br>
+            <div id="p">
+                <div id="hp">Rules</div><br>
+                Gain points by passing through single points on the map, called "balls".
+                To win, collect as many as you can.
+            </div>
+            <br>
+            <div id="p">
+                <div id="hp">Known bugs</div><br>
+                Beware of rapid moves in one axis, because that can reset your points!
+                There is no database, no cookies, so you play just for your own pleasure.
+            </div>
+            <br>
+            <div id="p">
+                <div id="hp">Contact</div><br>
+                You can contact the author(me) using email:
+                <div id="email">krzste09@outlook.com</div>
+            </div>
+        </div>
+    </body>
+</html>

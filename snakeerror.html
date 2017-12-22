@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Snake Game</title>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        @font-face { font-family: Delicious; src: url('Famirids.ttf'); } 
+        html{
+            font-family: Delicious;
+            margin: 0;
+            padding: 0;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+            background-color: black;
+        }
+        body{
+            align-content: center;
+            align-items: center;
+            align-self: center;
+        }
+        canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        #game-header{
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            font-size: 40px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #game-menu{
+            color: #0CCAE8;
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        #game-message{
+            color: #0CCAE8;
+            background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin: 4px 2px;
+            padding: 15px 32px;
+        }
+        .button {
+            background-color: black;
+            border: solid;
+            border-color: #0CE88B;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: Delicious;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <div id="game-header">
+            SNAKE 2D
+        </div>
+        <div id="game-message">
+            Sorry, page does not exist (yet)...
+        </div>
+        <div id="game-menu">
+            <form>
+                <input class="button" type="button" value="<<Back" onclick="window.location.href='snake3index.html'" />
+            </form> 
+        </div>
+    </body>
+</html>
